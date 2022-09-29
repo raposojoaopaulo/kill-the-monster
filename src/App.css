@@ -2,15 +2,18 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.monster-image {
+  display: block;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.monster-image img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.monster-image img:hover {
+  cursor: crosshair;
 }
 
 .App-header {
