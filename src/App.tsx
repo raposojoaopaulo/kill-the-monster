@@ -11,14 +11,20 @@ function App() {
   const [defenseMonster, setDefenseMonster] = useState(Math.floor(Math.random() * 20) + 31);
   const [atackDamage, setAtackDamage] = useState(Math.floor(Math.random() * 6) + 1);
 
+  const damageContainer = document.querySelector('#damage');
+
+
   const damageReduction = useMemo(() => {
     return defenseMonster * atackDamage / 100;
   }, [defenseMonster, atackDamage]);
   
 
-  const clickAtack = () => {    
-    setLifeMonster(lifeMonster - atackDamage + damageReduction);
+  const clickAtack = () => {  
+    damageContainer?.classList.remove('App-hide');  
+    let damage = atackDamage - damageReduction;
+    setLifeMonster(lifeMonster - damage);
     console.log(damageReduction);
+    console.log(damage);    
   };
 
   return (
@@ -26,8 +32,15 @@ function App() {
       <header className="App-header">
         <Monster health={lifeMonster} defense={defenseMonster} />
         <br />
+        <div>
+          
         {lifeMonster >= 0 ? <Weapons atackDamage={atackDamage} /> : <h1>You win!</h1>}
+        </div>
         <button onClick={clickAtack}>Atack</button>
+        <br />
+        <div id="damage" className="App-hide">
+          You did {Math.floor(atackDamage - damageReduction)} damage!
+        </div>
       </header>
     </div>
   );
